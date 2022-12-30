@@ -1,0 +1,121 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+        <link rel="stylesheet" href="./style.css">
+        </head> 
+    </head>
+    
+<body>
+
+    
+    <div class="container">
+        <div class="wrapper">
+            <div class="header">
+                <h1 id="title">SURVEY FORM</h1>
+                <p id="description">This is a survey form and the survey is conducted by freeCodeCamp</p>
+            </div>
+          <hr><br>
+            <form id="survey-form" >
+                <div class="label-div">
+                    <p><label id="name-label"> Name :</label></p><br>
+                    <p><label id="email-label">Email : </label></p> <br>
+                    <p><label id="number-label">Age :</label></p><br>
+                    <p><label id="dropdown-label">Select Your Domain : </label></p><br>
+                    <p><label>Gender : </label></p><br>
+                    <p><label>Intern Is : </label></p><br>
+                    <p><label>Your Experience : </label></p> <br>
+                </div>
+
+                <div class="input-div">
+                    <p><input type="text" id="name" placeholder="Your Name"></p><br>
+                    <p><input type="email" id="email" placeholder="Your Email"></p><br>
+                    <p><input min="1"  type="number" id="number" placeholder="Your Age"></p><br>
+                    <p><select id="dropdown">
+                            <option value="">--Select--</option>
+                            <option value="">--Full Stack--</option>
+                            <option value="">--Software Testing--</option>
+                            <option value="">Web Developer</option>
+                            <option value="">Data Scientist</option>
+                            <option value="">Graphics Designer</option>
+                            <option value="">UI Designer</option>
+                            <option value="">Game Developer</option>
+                        </select></p><br>
+                    <p><input type="radio" name="male">Male
+                        <input type="radio" name="female"> Female</p>
+                    <br>
+
+                    <p><input type="checkbox" value="freelancing">Paid
+                        <input type="checkbox" value="job">Unpaid</p>
+                    <br>
+                    <p><textarea cols="40" rows="10"></textarea></p><br>
+                </div>
+
+                <div class="btn-div">
+                    <input type="submit"  id="submit" >Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCqzECRj5mFn70YZxGPPK1EL3Rdoiv_GOA",
+          authDomain: "collecting-c5abb.firebaseapp.com",
+          databaseURL: "https://collecting-c5abb-default-rtdb.firebaseio.com",
+          projectId: "collecting-c5abb",
+          storageBucket: "collecting-c5abb.appspot.com",
+          messagingSenderId: "560781155400",
+          appId: "1:560781155400:web:05a2ad62bd894f3f130c7d",
+          measurementId: "G-KNJ8Y544F4"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import{getDatabase, set, get, update, remove, ref, child} 
+        from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+         const db=getDatabase();
+
+    var text=document.querySelector("#name");
+    var email= document.querySelector("#email");
+    var number= document.querySelector("#number");
+    var dropdown= document.querySelector("#dropdown");
+    var radio = document.querySelector("#radio");
+    var checkbox = document.querySelector("#checkbox");
+    var textarea = document.querySelector("#textarea")
+    
+    function InsertData(){
+
+        set(ref(db,"People/" + name.value),{
+           Your Name:name.value,
+           Your Email:email.value,
+           Age : number.value,
+
+
+        })
+        .then(()=>{
+            alert("Data added Succesfully!")
+        })
+        .catch(()=>{
+            alert(error)
+        });
+    }
+    var insertbt=document.querySelector("#insert");
+    
+    insertbt.addEventListener('click',InsertData){
+
+    }
+      </script>
+    </body>
+</html>
